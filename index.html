@@ -21,13 +21,11 @@
         </div>
         <div class="sidebar-menu">
             <ul>
-                <li><a href="#"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
-                <li><a href="#"><i class="fa fa-users"></i> <span>Customers</span></a></li>
-                <li><a href="#"><i class="fa fa-file"></i> <span>Projects</span></a></li>
-                <li><a href="#"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a></li>
-                <li><a href="#"><i class="fa fa-money"></i> <span>Income</span></a></li>
-                <li><a href="#"><i class="fa fa-user"></i> <span>Account</span></a></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+                <li><a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
+                <li><a href="/creators.html"><i class="fa fa-users"></i> <span>Creators</span></a></li>
+                <li><a href="/uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a></li>
+                <li><a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a></li>
+                <li><a href="/income.html"><i class="fa fa-money"></i> <span>Income</span></a></li>
             </ul>
         </div>
     </section>
@@ -35,8 +33,7 @@
     <Section id="main-content">
         <header>
             <div class="header-left">
-                <h2 class="toggle-btn">
-                    <i class="fa fa-bars"></i> Dashboard
+                <h2 class="toggle-btn"> Dashboard
                 </h2>
             </div>
             <div class="header-left header-serach">
@@ -54,19 +51,19 @@
         </header>
         <div class="clear"></div>
         <div class="main-content-info container">
-            <div class="card">
+            <div style="cursor: pointer;" onclick="window.location = '/creators.html'" class="card">
                 <h2 class="cus-num cus-h">130</h2>
-                <p>Customers</p>
+                <p>Creators</p>
             </div>
-            <div class="card">
+            <div style="cursor: pointer;" onclick="window.location = '/uploads.html'" class="card">
                 <h2 class="cus-num cus-pro">250</h2>
-                <p>Projects</p>
+                <p>Uploaded Content</p>
             </div>
-            <div class="card">
+            <div style="cursor: pointer;" onclick="window.location = '/orders.html'" class="card">
                 <h2 class="cus-num cus-ord">155</h2>
-                <p>Order</p>
+                <p>Orders</p>
             </div>
-            <div class="card">
+            <div style="cursor: pointer;" onclick="window.location = '/income.html'" class="card">
                 <h2 class="cus-num cus-inc">100k</h2>
                 <p>Income</p>
             </div>
@@ -79,7 +76,7 @@
                         <h2>Recently joined creators</h2>
                     </div>
                     <div class="see-all">
-                        <button>See all</button>
+                        <button onclick="window.location = '/creators.html'">See all</button>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -106,36 +103,6 @@
                         <td>Ram@gmail.com</td>
                         <td><span class="pending-span"></span> Pending</td>
                     </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="rev-span"></span>Review</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="progress-span"></span>In Progress</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="pending-span"></span> Pending</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="rev-span"></span>Review</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="progress-span"></span>In Progress</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="pending-span"></span> Pending</td>
-                    </tr>
                    
                 </table>
             </div>
@@ -145,7 +112,7 @@
                         <h2>All Creators</h2>
                     </div>
                     <div class="see-all">
-                        <button>See all</button>
+                        <button onclick="window.location = '/creators.html'">See all</button>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -158,56 +125,6 @@
                     <tr>
                         <td><img class="table-img" src="images/user.png"/></td>
                         <td>Smith Jhon</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Jhon Doe</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Mr Lewerce</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Damin Roe</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Smith Jhon</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Jhon Doe</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Damin Roe</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Smith</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Smith</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Smith</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Mr Lewerce</td>
                         <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
                     </tr>
                     
@@ -227,7 +144,7 @@
 
 </html>
 
-// modal 
+<!-- // modal 
 // node mailer
-// firebase 
-// How to set up firebase in js , html  , css 
+// firebase  -->
+<!-- // How to set up firebase in js , html  , css  -->
