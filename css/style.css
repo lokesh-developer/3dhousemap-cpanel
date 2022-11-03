@@ -28,10 +28,29 @@ a {
 }
 
 .container {
-    max-width: 1330px;
+    max-width: 100%;
     margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 120px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
+.mini-card{
+    width: max-content;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f37171;
+    border-radius: 15px;
+}
+
+.mini-card > h2{
+    margin: 15px;
 }
 
 .clear {
@@ -112,6 +131,10 @@ header {
     padding: 20px;
 }
 
+.header-right{
+    float: right;
+}
+
 .header-left h2 {
     cursor: pointer;
 }
@@ -122,16 +145,71 @@ header {
     padding-right: 10px;
 }
 
+.sec-container{
+    background-color: #ffffff;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.sec-left{
+    display: flex;
+    flex: 1;
+    background: #000;
+    margin-top: 0!important;
+}
+
+.sec-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 4;
+}
+
+.sec-right > img {
+    border-radius: 15px;
+}
+
+.sec-right > h3 {
+    font-size: xx-large;
+}
+
 .card {
-    float: left;
-    width: 21%;
     background: linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
     box-shadow: 0 6px 20px 0 rgb(244 143 177 / 50%);
     color: #fff;
-    margin-top: 120px;
     margin-left: 2%;
     padding: 25px;
     margin-right: 2%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card > img {
+    border-radius: 150px;
+}
+
+.card > button {
+    background-color: 'white';
+}
+
+.button{
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button:hover{
+
 }
 
 h2.cus-num {
