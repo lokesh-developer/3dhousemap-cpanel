@@ -1,171 +1,123 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Admin Dashboard</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-witdh, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- <link rel="stylesheet" href="../lib/w3.css" /> -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/fetch.js"></script>
+    <script type="module">
+        import { setCreators } from "./js/fetch.js";
+        setCreators();
+    </script>
+  </head>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../lib/w3.css">
-</head>
-
-<body>
+  <body>
     <section id="sidebar">
-        <div class="sidebar-brand">
-            <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
-        </div>
-        <div class="sidebar-menu">
-            <ul>
-                <li><a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
-                <li><a href="/creators.html"><i class="fa fa-users"></i> <span>Creators</span></a></li>
-                <li><a href="/uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a></li>
-                <li><a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a></li>
-                <li><a href="/income.html"><i class="fa fa-money"></i> <span>Income</span></a></li>
-            </ul>
-        </div>
+      <div class="sidebar-brand">
+        <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
+          </li>
+          <li>
+            <a href="/creators.html"><i class="fa fa-users"></i> <span>Creators</span></a>
+          </li>
+          <li>
+            <a href="/uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
+          </li>
+          <li>
+            <a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a>
+          </li>
+          <li>
+            <a href="/income.html"><i class="fa fa-money"></i> <span>Income</span></a>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <Section id="main-content">
-        <header>
-            <div class="header-left">
-                <h2 class="toggle-btn"> Dashboard
-                </h2>
-            </div>
-            <div class="header-left header-serach">
-                <div class="serach-par">
-                    <input class="search" type="text" placeholder="Search Here...">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
-            <div class="header-left header-profile">
-                <img src="images/user.png" class="img-responsive" />
-                <h3>Abhishek</h3>
-                <p>Admin</p>
-            </div>
-            <div class="clear"></div>
-        </header>
+    <section id="main-content">
+      <header>
+        <div class="header-left">
+          <h2 class="toggle-btn">Dashboard</h2>
+        </div>
+        <div class="header-left header-serach">
+          <div class="serach-par">
+            <input class="search" type="text" placeholder="Search Here..." />
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+        <div class="header-left header-profile">
+          <img src="images/user.png" class="img-responsive" />
+          <h3>Abhishek</h3>
+          <p>Admin</p>
+        </div>
         <div class="clear"></div>
-        <div class="main-content-info container">
-            <div style="cursor: pointer;" onclick="window.location = '/creators.html'" class="card">
-                <h2 class="cus-num cus-h">130</h2>
-                <p>Creators</p>
+      </header>
+      <div class="clear"></div>
+      <div class="main-content-info container">
+        <div style="cursor: pointer" onclick="window.location = '/creators.html'" class="card">
+          <h2 class="cus-num cus-h">130</h2>
+          <p>Creators</p>
+        </div>
+        <div style="cursor: pointer" onclick="window.location = '/uploads.html'" class="card">
+          <h2 class="cus-num cus-pro">250</h2>
+          <p>Uploaded Content</p>
+        </div>
+        <div style="cursor: pointer" onclick="window.location = '/orders.html'" class="card">
+          <h2 class="cus-num cus-ord">155</h2>
+          <p>Orders</p>
+        </div>
+        <div style="cursor: pointer" onclick="window.location = '/income.html'" class="card">
+          <h2 class="cus-num cus-inc">100k</h2>
+          <p>Income</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="content-pro-par container">
+        <div style="width: 100%" class="pro-table">
+          <div class="recent-project">
+            <div class="rec-pro-h">
+              <h2>Recently Joined Creators</h2>
             </div>
-            <div style="cursor: pointer;" onclick="window.location = '/uploads.html'" class="card">
-                <h2 class="cus-num cus-pro">250</h2>
-                <p>Uploaded Content</p>
-            </div>
-            <div style="cursor: pointer;" onclick="window.location = '/orders.html'" class="card">
-                <h2 class="cus-num cus-ord">155</h2>
-                <p>Orders</p>
-            </div>
-            <div style="cursor: pointer;" onclick="window.location = '/income.html'" class="card">
-                <h2 class="cus-num cus-inc">100k</h2>
-                <p>Income</p>
+            <div class="see-all">
+              <button onclick="window.location = '/creators.html'">See all</button>
             </div>
             <div class="clear"></div>
+          </div>
+          <table id="creators-table" style="width: 100%">
+            <tr>
+              <th>Creator name</th>
+              <th>Creator email</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </table>
         </div>
-        <div class="content-pro-par container">
-            <div class="pro-table">
-                <div class="recent-project">
-                    <div class="rec-pro-h">
-                        <h2>Recently joined creators</h2>
-                    </div>
-                    <div class="see-all">
-                        <button onclick="window.location = '/creators.html'">See all</button>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <table style="width:100%">
-                    <tr>
-                        <th>Creator name</th>
-                        <th>Creator email</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        
-                        <td> <a href ="./creator.html">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="rev-span"></span>Review</td>
-                    </a>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="progress-span"></span>In Progress</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span class="pending-span"></span> Pending</td>
-                    </tr>
-                   
-                </table>
-            </div>
-            <div class="pro-cus">
-                <div class="recent-project">
-                    <div class="rec-pro-h">
-                        <h2>All Creators</h2>
-                    </div>
-                    <div class="see-all">
-                        <button onclick="window.location = '/creators.html'">See all</button>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <table style="width:100%">
-                    <tr>
-                        <th>Pic</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                    </tr>
-                    <tr>
-                        <td><img class="table-img" src="images/user.png"/></td>
-                        <td>Smith Jhon</td>
-                        <td class="cnt-info-td"><a href="tel:9800121212"><i class="fa fa-phone"></i></a><a href="tel:9800121212"><i class="fa fa-envelope"></i></a><a href="tel:9800121212"><i class="fa fa-map-marker"></i></a></td>
-                    </tr>
-                    
-                </table>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </Section>
+      </div>
+    </section>
     <div class="clear"></div>
-
-
-
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/external.js"></script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCZecI4zg7We3TKukIXYvglMVKkST5IOus",
-          authDomain: "threedhousemap-new.firebaseapp.com",
-          projectId: "threedhousemap-new",
-          storageBucket: "threedhousemap-new.appspot.com",
-          messagingSenderId: "419796651556",
-          appId: "1:419796651556:web:7e0635ed2208eb8637d2b1",
-          measurementId: "G-MKDS9SEZE9"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        console.log(app)
-      </script>
-</body>
-
+  </body>
 </html>
 
 <!-- // modal 
