@@ -65,7 +65,7 @@ export async function setAllCreators() {
               <td>${data.contact}</td>
               <td>
               <button id='${doc.id}' class='removeButton'  style="cursor: pointer;">Remove</button>
-              <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
+              <button id='${doc.id}' class='viewProfile' style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
               </td>
             `;
         creatorsTable.appendChild(tr);

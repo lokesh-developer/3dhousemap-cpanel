@@ -2,7 +2,7 @@ import firebase from './firebase.js'
 import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
 
 // const { app, db} = firebase
-export async function fetchB(){
+export async function deleteRequest(){
     const btn = document.getElementsByClassName('removeButton');
     console.log(btn)
     var b = Array.from(btn);

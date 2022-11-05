@@ -21,7 +21,8 @@
   </script>
   <script type="module">
     import { setAllCreators } from "./js/fetch.js";
-    import {fetchB} from './js/delete.js'
+    import {deleteRequest} from './js/delete.js'
+    import {viewProfile} from './js/view.js'
     // setAllCreators();
     // fetchB()
     const layData =async () => {
@@ -29,7 +30,7 @@
       return;
     }
 
-    layData().then(()=>fetchB())
+    layData().then(()=>{deleteRequest(); viewProfile()})
   </script>
 </head>
 
