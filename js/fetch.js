@@ -56,16 +56,22 @@ export async function setAllCreators() {
     docSnap.docs.reverse().forEach((doc) => {
         // console.log(doc.data());
         const data = doc.data();
+        // console.log(data, doc.id)
         const tr = document.createElement("tr");
+        let id = doc.id;
         tr.innerHTML = `
               <td><a href="./creator.html?id=${doc.id}">${data.fullName}</a></td>
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
-                        <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
-                </td>
+              <button class='removeButton'  style="cursor: pointer;">Remove</button>
+              <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
+              </td>
             `;
         creatorsTable.appendChild(tr);
     });
 }
+
+// export async function removeRequest(id){
+//     console.log('Deletion Initiated')
+// }
