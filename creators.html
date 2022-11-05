@@ -16,12 +16,20 @@
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/fetch.js"></script>
   <script type="module">
-    import {fetchB} from './js/delete.js'
-    fetchB()
+    
+    
   </script>
   <script type="module">
     import { setAllCreators } from "./js/fetch.js";
-    setAllCreators();
+    import {fetchB} from './js/delete.js'
+    // setAllCreators();
+    // fetchB()
+    const layData =async () => {
+      const d = await setAllCreators();
+      return;
+    }
+
+    layData().then(()=>fetchB())
   </script>
 </head>
 

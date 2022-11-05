@@ -5,20 +5,20 @@ import { collection, doc, getDocs } from "https://www.gstatic.com/firebasejs/9.1
 export async function setProducts() {
     const products = collection(firebase.db, "products");
     const docSnap = await getDocs(products);
-    console.log(docSnap.docs);
+    // console.log(docSnap.docs);
     const table = document.getElementById("uploads-table");
     // console.log(creatorsTable);
     docSnap.docs.reverse().forEach((doc) => {
         // console.log(doc.data());
         const data = doc.data();
-        console.log(data);
+        // console.log(data);
         const tr = document.createElement("tr");
         tr.innerHTML = `
               <td><img src='${data.image}' width='70px' height='70px'/></td>
               <td>${data.email}</td>
               <td><button style="cursor: pointer;" onclick="window.open('${data.mainFile}')">Download</button></td>
               <td>
-              <button style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
+              <button id='${doc.id}' style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
                         <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
                 </td>
             `;
@@ -40,7 +40,7 @@ export async function setCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
+              <button id='${doc.id}' style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
                         <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
                 </td>
             `;
@@ -64,7 +64,7 @@ export async function setAllCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button class='removeButton'  style="cursor: pointer;">Remove</button>
+              <button id='${doc.id}' class='removeButton'  style="cursor: pointer;">Remove</button>
               <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
               </td>
             `;
