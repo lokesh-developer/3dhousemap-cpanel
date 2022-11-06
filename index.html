@@ -22,11 +22,17 @@
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/fetch.js"></script>
     <script type="module">
-        import { setCreators } from "./js/fetch.js";
-        setCreators();
-    </script>
-    <script type="module">
-      import { removeRequest } from "./js/delete.js"
+      import { setCreators } from "./js/fetch.js";
+      import {deleteRequest} from './js/delete.js'
+      import {viewProfile} from './js/view.js'
+      // setAllCreators();
+      // fetchB()
+      const layData =async () => {
+        const d = await setCreators();
+        return;
+      }
+  
+      layData().then(()=>{deleteRequest(); viewProfile()})
     </script>
   </head>
 

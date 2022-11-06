@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,9 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../lib/w3.css">
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/fetch.js"></script>
+    <script type="module">
+        import { fetchIncome } from "./js/fetch.js";
+        fetchIncome();
+    </script>
 </head>
+
 <body>
-     <section id="sidebar">
+    <section id="sidebar">
         <div class="sidebar-brand">
             <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
         </div>
@@ -31,7 +39,7 @@
         </div>
     </section>
     <Section id="main-content">
-    <header>
+        <header>
             <div class="header-left">
                 <h2 class="toggle-btn"> Income
                 </h2>
@@ -53,43 +61,23 @@
                 <h2 class="cus-num cus-inc">200000 Rs</h2>
                 <p>Overall Income</p>
             </div>
-            </div>    
-     <div style="margin-top: 100px;" class="content-pro-par container">
-        
+        </div>
+        <div style="margin-top: 100px;" class="content-pro-par container">
+
             <div class="pro-table">
-    <table style="width:100%">
+                <table id='income-table' style="width:100%">
                     <tr>
                         <th>Creator name</th>
                         <th>Creator email</th>
                         <th>This month</th>
                         <th>Total</th>
                     </tr>
-                    <tr>
-                        
-                        <td> <a href ="./creator.html">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span></span> 400 Rs</td>
-                        <td><span></span> 400 Rs</td>
-                    </a>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span></span> 400 Rs</td>
-                        <td><span></span> 400 Rs</td>
-                    </tr>
-                    <tr>
-                        <td><a href ="#">Ram</a></td>
-                        <td>Ram@gmail.com</td>
-                        <td><span></span> 400 Rs</td>
-                        <td><span></span> 400 Rs</td>
-                    </tr>
-                   
                 </table>
-                </div>
-                </div>
-                </Section>
-                 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+            </div>
+        </div>
+    </Section>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/external.js"></script>
 </body>
+
 </html>
