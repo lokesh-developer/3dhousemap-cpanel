@@ -40,7 +40,7 @@ export async function setCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
+              <button id="${doc.id}" style="cursor: pointer;" onclick="window.location = '/creators.html'">Remove</button>
                         <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
                 </td>
             `;
@@ -64,7 +64,7 @@ export async function setAllCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button class='removeButton'  style="cursor: pointer;">Remove</button>
+              <button id="${doc.id}" class='removeButton'  style="cursor: pointer;">Remove</button>
               <button  style="cursor: pointer;" onclick="window.location = '/creators.html'">View</button>
               </td>
             `;

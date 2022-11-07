@@ -2,9 +2,8 @@ import firebase from './firebase.js'
 
 export function fetchB(){
     const btn = document.getElementsByClassName('removeButton');
-    console.log(btn)
-    var b = Array.from(btn);
-    console.log(b)
+    // console.log(btn.length);
+    return btn;
 }
 // function removeRequest(){
 //     const id = btn.id;
