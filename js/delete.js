@@ -1,6 +1,6 @@
 import firebase from './firebase.js'
 import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
-import { ref, listAll } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
+import { ref, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
 // const { app, db} = firebase
 export async function deleteRequest() {
@@ -18,16 +18,11 @@ export async function deleteRequest() {
             let ans = confirm('Do You Really Want To Reject Request?')
             if (ans) {
                 const del = doc(firebase.db, 'joinedus', `${btn[i].id}`)
-                deleteDoc(del).then(() => window.location.reload())
-                const files = ref(firebase.storage, `joinedus/${btn[i].id}`)
 
-                listAll(files).then((listResults) => {
-                    const promises = listResults.items.map((item) => {
-                        console.log(item)
-                        return item.delete();
-                    });
-                    Promise.all(promises);
-                });
+
+
+                const files = ref(firebase.storage, `joinedus/${btn[i].id}`)
+                deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
             } else {
                 alert('Request Not Deleted!')
             }
@@ -47,16 +42,11 @@ export async function deleteProduct() {
             let ans = confirm('Do You Really Want To Delete Product?')
             if (ans) {
                 const del = doc(firebase.db, 'products', `${btn[i].id}`)
-                deleteDoc(del).then(() => window.location.reload())
+                // deleteDoc(del).then(() => window.location.reload())
+
                 const files = ref(firebase.storage, `products/${btn[i].id}`)
 
-                listAll(files).then((listResults) => {
-                    const promises = listResults.items.map((item) => {
-                        console.log(item)
-                        return item.delete();
-                    });
-                    Promise.all(promises);
-                });
+                deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
             } else {
                 alert('Request Not Deleted!')
             }
