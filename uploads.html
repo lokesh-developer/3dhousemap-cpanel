@@ -25,7 +25,15 @@
     <script type="module" src="js/fetch.js"></script>
     <script type="module">
       import { setProducts } from './js/fetch.js';
-      setProducts();
+      import {deleteProduct} from './js/delete.js'
+      import {viewProfile} from './js/view.js'
+
+      const layData =async () => {
+        const d = await setProducts();;
+        return;
+      }
+  
+      layData().then(()=>{deleteProduct(); viewProfile()})
     </script>
   </head>
   <body>
@@ -44,9 +52,9 @@
           <li>
             <a href="/uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
           </li>
-          <li>
+          <!-- <li>
             <a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a>
-          </li>
+          </li> -->
           <li>
             <a href="/income.html"><i class="fa fa-money"></i> <span>Income</span></a>
           </li>

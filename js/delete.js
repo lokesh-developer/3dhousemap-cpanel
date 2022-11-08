@@ -4,12 +4,12 @@ import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/fir
 // const { app, db} = firebase
 export async function deleteRequest(){
     const btn = document.getElementsByClassName('removeButton');
-    console.log(btn)
+    //console.log(btn)
     var b = Array.from(btn);
-    console.log(b.length)
+    //console.log(b.length)
     for(let i=0; i<b.length; i++){
         btn[i].addEventListener('click', async function(){
-            console.log(btn[i].id)
+            //console.log(btn[i].id)
             
             let ans = confirm('Do You Really Want To Reject Request?')
             if(ans){
@@ -21,12 +21,33 @@ export async function deleteRequest(){
         })
     }
 }
+
+export async function deleteProduct(){
+    const btn = document.getElementsByClassName('removeProduct');
+    //console.log(btn)
+    var b = Array.from(btn);
+    //console.log(b.length)
+    for(let i=0; i<b.length; i++){
+        btn[i].addEventListener('click', async function(){
+            //console.log(btn[i].id)
+            
+            let ans = confirm('Do You Really Want To Delete Product?')
+            if(ans){
+                const del = doc(firebase.db, 'products', `${btn[i].id}`)
+                deleteDoc(del).then(()=>window.location.reload())
+            } else {
+                alert('Request Not Deleted!')
+            }
+        })
+    }
+}
+
 // function removeRequest(){
 //     const id = btn.id;
-//     console.log(id)
+//     //console.log(id)
 // }
 // fetchB()
-// console.log(btn[0], btn.length)
+// //console.log(btn[0], btn.length)
 
-// console.log(len(btn[0]))
-// btn.addEventListener('click', console.log('Clicked'))
+// //console.log(len(btn[0]))
+// btn.addEventListener('click', //console.log('Clicked'))

@@ -11,13 +11,13 @@ import { collection, doc, getDoc, deleteDoc} from "https://www.gstatic.com/fireb
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
 
 export async function getUser() {
-    console.log('Hello')
+    //console.log('Hello')
     // const user = collection(firebase.db, "joinedus");
     const id = window.location.search.slice(4);
     const docRef = doc(firebase.db, "joinedus", id);
     const userDoc = await getDoc(docRef)
     const user = userDoc.data()
-    console.log(user)
+    // //console.log(user)
     let name = document.getElementById('name')
     name.textContent = user.fullName
     let email = document.getElementById('email')
@@ -27,14 +27,14 @@ export async function getUser() {
     creator.textContent = ('Creator : ' + user.fullName)
 
     var acceptBtn = document.getElementById("accept");
-    console.log(acceptBtn)
+    // //console.log(acceptBtn)
 
     acceptBtn.addEventListener("click", (e) => {
         e.preventDefault();
         // confirm("Accept button clicked");
 
         
-        console.log(templateParams)
+        //console.log(templateParams)
         try {
             function generateP() {
                 var pass = '';
@@ -52,11 +52,11 @@ export async function getUser() {
             }
 
             const password = generateP()
-            console.log(user.email)
+            //console.log(user.email)
             createUserWithEmailAndPassword(firebase.auth, user.email, password)
                 .then((userCredential) => {
                     var user = userCredential.user;
-                    console.log(user)
+                    //console.log(user)
             })
 
             var templateParams = {
@@ -70,26 +70,26 @@ export async function getUser() {
                 .send('service_nqy2iol', 'template_vlhr40o', templateParams) //Insert your email service ID and email template ID
                 .then(
                     function (response) {
-                        console.log('SUCCESS!', response.status, response.text);
+                        //console.log('SUCCESS!', response.status, response.text);
                     },
                     function (error) {
-                        console.log('FAILED...', error);
+                        //console.log('FAILED...', error);
                     }
                 );
         } catch (error) {
-            console.log(error)
+            //console.log(error)
         }
     })
 
     var rejectBtn = document.getElementById("decline");
-    console.log(rejectBtn)
-    console.log(rejectBtn)
+    //console.log(rejectBtn)
+    //console.log(rejectBtn)
     rejectBtn.addEventListener('click', async function(){
-        console.log(id)
+        //console.log(id)
         
         let ans = confirm('Do You Really Want To Reject Request?')
         if(ans){
-            console.log(id)
+            //console.log(id)
             const del = doc(firebase.db, 'joinedus', id)
             deleteDoc(del).then(()=>window.location.replace('/creators.html'))
         } else {
