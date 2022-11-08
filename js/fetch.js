@@ -77,7 +77,7 @@ export async function fetchIncome() {
     const creators = collection(firebase.db, 'joinedus');
     const docs = await getDocs(creators);
     const incomeTable = document.getElementById('income-table');
-
+    let overallIncome = 0;
     docs.docs.forEach((doc) => {
         const data = doc.data();
 
@@ -86,12 +86,12 @@ export async function fetchIncome() {
         data.plansSold.map((e) => totalIncome += parseFloat(e.price))
         ////console.log(totalIncome)
         const tr = document.createElement("tr");
-
+        
         let oneMonthIncome = 0;
         var seconds = new Date().getTime() / 1000;
         const todayTS = seconds * 1000;
         const past30thTS = (seconds  -2592000)*1000;
-
+        overallIncome += totalIncome;
         data.plansSold.map((e) => {
                 ////console.log(e.timestamp.seconds * 1000) //Timestamp Of The Date When The Product Was Purchased
                 ////console.log(seconds * 1000) //Today's Timestamp
@@ -113,4 +113,8 @@ export async function fetchIncome() {
             `;
         incomeTable.appendChild(tr);
     })
+
+    const inc = document.getElementById('income')
+    inc.textContent = overallIncome + ' INR';
+    // inc.innerText({oneMonthIncome}))
 }
