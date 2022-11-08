@@ -21,8 +21,11 @@ export async function deleteRequest() {
 
 
 
-                const files = ref(firebase.storage, `joinedus/${btn[i].id}`)
-                deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
+                const files = ref(firebase.storage, `joinedus/${btn[i].id}/`)
+
+                console.log(files)
+
+                await deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
             } else {
                 alert('Request Not Deleted!')
             }
@@ -46,7 +49,7 @@ export async function deleteProduct() {
 
                 const files = ref(firebase.storage, `products/${btn[i].id}`)
 
-                deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
+                await deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
             } else {
                 alert('Request Not Deleted!')
             }
