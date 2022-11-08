@@ -48,6 +48,15 @@ export async function deleteProduct() {
             if (ans) {
                 const del = doc(firebase.db, 'products', `${btn[i].id}`)
                 deleteDoc(del).then(() => window.location.reload())
+                const files = ref(firebase.storage, `products/${btn[i].id}`)
+
+                listAll(files).then((listResults) => {
+                    const promises = listResults.items.map((item) => {
+                        console.log(item)
+                        return item.delete();
+                    });
+                    Promise.all(promises);
+                });
             } else {
                 alert('Request Not Deleted!')
             }
