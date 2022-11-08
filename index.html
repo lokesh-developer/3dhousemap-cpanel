@@ -23,11 +23,12 @@
     
     <script type="module" src="js/fetch.js"></script>
     <script type="module">
-      import { setCreators } from "./js/fetch.js";
+      import { setCreators, fetchAllStats } from "./js/fetch.js";
       import {deleteRequest} from './js/delete.js'
       import {viewProfile} from './js/view.js'
       // setAllCreators();
       // fetchB()
+      fetchAllStats();
       const layData =async () => {
         const d = await setCreators();
         return;
@@ -82,29 +83,7 @@
         <div class="clear"></div>
       </header>
       <div class="clear"></div>
-      <div class="main-content-info container">
-        <div style="cursor: pointer" onclick="window.location = '/creators.html'" class="mini-card">
-          <h2 class="cus-num cus-h"></h2>
-          <h2>1000+</h2>
-          <p>Creators</p>
-        </div>
-        <div style="cursor: pointer" onclick="window.location = '/uploads.html'" class="mini-card">
-          <h2 class="cus-num cus-pro"></h2>
-          <h2>1000+</h2>
-          <p>Uploaded<br/> Content</p>
-        </div>
-        <div style="cursor: pointer" onclick="window.location = '/orders.html'" class="mini-card">
-          <h2 class="cus-num cus-ord"></h2>
-          <h2>1000+</h2>
-          <p>Orders</p>
-        </div>
-        <div style="cursor: pointer" onclick="window.location = '/income.html'" class="mini-card">
-          <h2 class="cus-num cus-inc"></h2>
-          <h2>1000+</h2>
-          <p>Income</p>
-        </div>
-        <div class="clear"></div>
-      </div>
+      <div id="stats"></div>
       <div class="content-pro-par container">
         <div style="width: 100%" class="pro-table">
           <div class="recent-project">
