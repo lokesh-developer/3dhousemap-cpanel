@@ -118,3 +118,58 @@ export async function fetchIncome() {
     inc.textContent = overallIncome + ' INR';
     // inc.innerText({oneMonthIncome}))
 }
+
+export const fetchAllStats = async () => {
+     const creators = collection(firebase.db, 'joinedus');
+     const products = collection(firebase.db, 'products');
+     const income = collection(firebase.db, 'joinedus');
+     const creatorDocSnap = await getDocs(creators);
+     const productDocSnap = await getDocs(products);
+     const incomeDocSnap = await getDocs(income);
+     const creatorsTable = document.getElementById('stats');
+     // ////console.log(creatorsTable);
+     let overallIncome = 0;
+    incomeDocSnap.docs.forEach((doc) => {
+      const data = doc.data();
+      console.log(data.plansSold)
+      let totalIncome = 0;
+      data.plansSold.map((e) => (totalIncome += parseFloat(e.price)));
+      overallIncome += totalIncome;
+    });
+     creatorsTable.innerHTML = `
+      <div class="main-content-info container">
+        <div style="cursor: pointer" onclick="window.location = '/creators.html'" class="mini-card">
+          <h2 class="cus-num cus-h"></h2>
+          <h2>${creatorDocSnap.docs.length}</h2>
+          <p>Creators</p>
+        </div>
+        <div style="cursor: pointer" onclick="window.location = '/uploads.html'" class="mini-card">
+          <h2 class="cus-num cus-pro"></h2>
+          <h2>${productDocSnap.docs.length}</h2>
+          <p>Uploaded<br/> Content</p>
+        </div>
+        <div style="cursor: pointer" onclick="window.location = '/income.html'" class="mini-card">
+          <h2 class="cus-num cus-inc"></h2>
+          <h2>${overallIncome} INR</h2>
+          <p>Income</p>
+        </div>
+        <div class="clear"></div>
+      </div>`;
+    //  docSnap.docs.reverse().forEach((doc) => {
+    //    // ////console.log(doc.data());
+    //    const data = doc.data();
+    //    // ////console.log(data, doc.id)
+    //    const tr = document.createElement('tr');
+    //    let id = doc.id;
+    //    tr.innerHTML = `;
+    //           <td><a href="./creator.html?id=${doc.id}">${data.fullName}</a></td>
+    //           <td>${data.email}</td>
+    //           <td>${data.contact}</td>
+    //           <td>
+    //           <button id='${doc.id}' class='removeButton'  style="cursor: pointer;">Remove</button>
+    //           <button id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
+    //           </td>
+    //         `;
+    //    creatorsTable.appendChild(tr);
+    //  });
+}
