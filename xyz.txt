@@ -1,1 +1,0 @@
-See the issue now is, I gave doc's id to the button, and how would I keep track of which button is clicked now, because we are getting that button by getElementById, but the ID here is unknown?

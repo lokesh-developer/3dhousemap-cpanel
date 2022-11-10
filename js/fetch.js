@@ -16,9 +16,9 @@ export async function setProducts() {
         tr.innerHTML = `
               <td><img src='${data.image}' width='70px' height='70px'/></td>
               <td>${data.email}</td>
-              <td><button style="cursor: pointer;" onclick="window.open('${data.mainFile}')">Download</button></td>
+              <td><button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500;cursor: pointer; cursor: pointer;" onclick="window.open('${data.mainFile}')">Download</button></td>
               <td>
-              <button id='${doc.id}' class='removeProduct' style="cursor: pointer;">Remove</button>
+              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeProduct' style="cursor: pointer;">Remove</button>
                 </td>
             `;
         table.appendChild(tr);
@@ -41,8 +41,8 @@ export async function setCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button id='${doc.id}' class='removeButton' style="cursor: pointer;">Remove</button>
-              <button id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
+              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeButton' style="cursor: pointer;">Remove</button>
+              <button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
                 </td>
             `;
         creatorsTable.appendChild(tr);
@@ -65,8 +65,8 @@ export async function setAllCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button id='${doc.id}' class='removeButton'  style="cursor: pointer;">Remove</button>
-              <button id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
+              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeButton'>Remove</button>
+              <button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='viewProfile' >View</button>
               </td>
             `;
         creatorsTable.appendChild(tr);
