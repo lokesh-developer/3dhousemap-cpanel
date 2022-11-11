@@ -59,7 +59,7 @@ export async function getUser() {
                 .then((userCredential) => {
                     var user = userCredential.user;
                     ////console.log(user)
-                    document.getElementById('accept').textContent = 'Accepted!'
+                    // document.getElementById('accept').textContent = 'Accepted!'
                          document.getElementById('decline').style.display = 'none'
                 })
                 .catch(error => {
