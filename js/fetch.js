@@ -41,7 +41,7 @@ export async function setCreators() {
               <td>${data.email}</td>
               <td>${data.contact}</td>
               <td>
-              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeButton' style="cursor: pointer;">Remove</button>
+              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer; id='${doc.id}' class='removeButton' style="cursor: pointer;">Remove</button>
               <button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
                 </td>
             `;
