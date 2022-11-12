@@ -45,7 +45,7 @@ export async function deleteProduct() {
             let ans = confirm('Do You Really Want To Delete Product?')
             if (ans) {
                 const del = doc(firebase.db, 'products', `${btn[i].id}`)
-                // deleteDoc(del).then(() => window.location.reload())
+                deleteDoc(del).then(() => window.location.reload())
 
                 const files = ref(firebase.storage, `products/${btn[i].id}`)
 
