@@ -7,18 +7,17 @@
 // import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js'
 
 import firebase from './firebase.js'
-import { collection, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+import { doc, getDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
 
 export async function getUser() {
-    ////console.log('Hello')
-    // const user = collection(firebase.db, "joinedus");
 
     const id = window.location.search.slice(4);
     const docRef = doc(firebase.db, "joinedus", id);
     const userDoc = await getDoc(docRef)
     const user = userDoc.data()
-    // ////console.log(user)
+    const fileFormat = user.sampleDesign?.split('joinedus')[1].split('?alt=')[0].replace('%2F', "/").replace('%20', ' ').replace('%2F', "/").replace('%20', ' ').replace('%20', ' ').split('/')[2].slice(0, -13).split('.')[1]
+    console.log(user)
     let name = document.getElementById('name')
     name.textContent = user.fullName
     let email = document.getElementById('email')
@@ -29,13 +28,26 @@ export async function getUser() {
 
     var acceptBtn = document.getElementById("accept");
     // ////console.log(acceptBtn)
+    var img = document.getElementById('mainImage');
+    console.log(img)
+    if(fileFormat === 'png' || fileFormat === 'jpg' || fileFormat === 'jpeg'){
+        img.src=`${user.sampleDesign}`
+    } else {
+        img.src='https://th.bing.com/th/id/OIP.eIaVXCWVby6f6b4iKrx4FAHaHa?pid=ImgDet&rs=1'
+    }
+
+    var fD = document.getElementById('fileDownload');
+    const ff = user.sampleDesign?.split('joinedus')[1].split('?alt=')[0].replace('%2F', "/").replace('%20', ' ').replace('%2F', "/").replace('%20', ' ').replace('%20', ' ').split('/')[2].slice(0, -13)
+    console.log(ff)
+    fD.href=`${user.educationQualification}`
+    fD.download = `${ff}`
+    console.log(fD)
 
     acceptBtn.addEventListener("click", (e) => {
         e.preventDefault();
         alert("Accept button clicked");
 
 
-        ////console.log(templateParams)
         try {
             function generateP() {
                 var pass = '';
@@ -53,15 +65,19 @@ export async function getUser() {
             }
 
             const password = generateP()
-            ////console.log(user.email)
+
             try {
                 createUserWithEmailAndPassword(firebase.auth, user.email, password)
-                .then((userCredential) => {
-                    var user = userCredential.user;
-                    ////console.log(user)
-                    document.getElementById('accept').textContent = 'Accepted!'
-                         document.getElementById('decline').style.display = 'none'
+                .then(async (userCredential) => {
+                        await updateDoc(docRef, {
+                            creator: true,
+                            credentials: userCredential,
+                        })
+
+                        document.getElementById('decline').style.display = 'none'
+                        window.location.replace('/creators.html')
                 })
+
                 .catch(error => {
                     switch (error.code) {
                        case 'auth/email-already-in-use':
@@ -115,19 +131,26 @@ export async function getUser() {
         }
     })
 
+
     var rejectBtn = document.getElementById("decline");
-    ////console.log(rejectBtn)
-    ////console.log(rejectBtn)
+
+    if(userDoc.creator){
+        rejectBtn.style.display = 'none';
+    }
+
     rejectBtn.addEventListener('click', async function () {
         ////console.log(id)
 
         let ans = confirm('Do You Really Want To Reject Request?')
         if (ans) {
-            ////console.log(id)
+
             const del = doc(firebase.db, 'joinedus', id)
             deleteDoc(del).then(() => window.location.replace('/creators.html'))
+
         } else {
+
             alert('Request Not Deleted!')
+
         }
     })
 }

@@ -1,31 +1,27 @@
 import firebase from './firebase.js'
-import { collection, doc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
-import { ref, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
+import { collection, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+import { ref, deleteObject } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
 
-// const { app, db} = firebase
 export async function deleteRequest() {
     const btn = document.getElementsByClassName('removeButton');
-    //console.log(btn)
+
     var b = Array.from(btn);
-    //console.log(b.length)
+
     for (let i = 0; i < b.length; i++) {
 
-
-
         btn[i].addEventListener('click', async function () {
-            //console.log(btn[i].id)
 
             let ans = confirm('Do You Really Want To Reject Request?')
+
             if (ans) {
                 const del = doc(firebase.db, 'joinedus', `${btn[i].id}`)
+                const doc1 = await getDoc(del)
 
+                const sDRef = ref(firebase.storage, `${doc1.data().sampleDesign}`)
+                const eQRef = ref(firebase.storage, `${doc1.data().educationQualification}`)
 
-
-                const files = ref(firebase.storage, `joinedus/${btn[i].id}/`)
-
-                console.log(files)
-
-                await deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
+                deleteObject(sDRef).then(() => deleteObject(eQRef).then(() => console.log('Deletion Completed')).cathc(() => console.log('Some Error Occured While Deleting Educational Qualifications'))).catch(() => console.log('Some Error Occured While Deleting Sample Design'))
+                deleteDoc(del).then(() => console.log('Request Rejected')).catch(() => console.log('Some Error Occured While Rejecting Request'))
             } else {
                 alert('Request Not Deleted!')
             }
@@ -34,35 +30,27 @@ export async function deleteRequest() {
 }
 
 export async function deleteProduct() {
+
     const btn = document.getElementsByClassName('removeProduct');
-    //console.log(btn)
     var b = Array.from(btn);
-    //console.log(b.length)
+
     for (let i = 0; i < b.length; i++) {
         btn[i].addEventListener('click', async function () {
-            //console.log(btn[i].id)
 
             let ans = confirm('Do You Really Want To Delete Product?')
+
             if (ans) {
                 const del = doc(firebase.db, 'products', `${btn[i].id}`)
-                deleteDoc(del).then(() => window.location.reload())
+                const doc1 = await getDoc(del);
 
-                const files = ref(firebase.storage, `products/${btn[i].id}`)
+                const imRef = ref(firebase.storage, `${doc1.data().image}`)
+                const mFRef = ref(firebase.storage, `${doc1.data().mainFile}`)
 
-                await deleteObject(files).then(() => deleteDoc(del).then(() => window.location.reload()))
+                deleteObject(imRef).then(() => deleteObject(mFRef).then(() => console.log('Deletion Completed')).cathc(() => console.log('Some Error Occured While Deleting Main File'))).catch(() => console.log('Some Error Occured While Deleting Image'))
+                deleteDoc(del).then(() => console.log('Request Rejected')).catch(() => console.log('Some Error Occured While Rejecting Request'))
             } else {
                 alert('Request Not Deleted!')
             }
         })
     }
 }
-
-// function removeRequest(){
-//     const id = btn.id;
-//     //console.log(id)
-// }
-// fetchB()
-// //console.log(btn[0], btn.length)
-
-// //console.log(len(btn[0]))
-// btn.addEventListener('click', //console.log('Clicked'))
