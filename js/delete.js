@@ -8,6 +8,7 @@ import {
 import { ref, deleteObject } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
 
 export async function deleteRequest() {
+  
   const btn = document.getElementsByClassName('removeButton');
 
   var b = Array.from(btn);
