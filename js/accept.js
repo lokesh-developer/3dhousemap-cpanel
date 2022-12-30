@@ -71,13 +71,19 @@ export async function getUser() {
                 createUserWithEmailAndPassword(firebase.auth, user.email, password)
                     .then(async (userCredential) => {
                         const dbRef = collection(firebase.db, 'users');
-                        addDoc(dbRef, user)
-                            .then(docRef => {
-                                console.log('Added To Users');
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            })
+                        addDoc(dbRef, {
+                          uid: userCredential.user.uid,
+                          email: user.email,
+                          name: user.fullName,
+                          photo: '',
+                          collections: []
+                        })
+                          .then((docRef) => {
+                            console.log('Added To Users');
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
 
                         document.getElementById('accept').textContent = 'Accepted!'
                                 document.getElementById('decline').style.display = 'none'
