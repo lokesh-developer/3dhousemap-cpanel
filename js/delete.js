@@ -43,7 +43,7 @@ export async function deleteRequest() {
           .then(() =>
             deleteObject(eQRef)
               .then(() => console.log('Deletion Completed'))
-              .cath(() =>
+              .catch(() =>
                 console.log('Some Error Occured While Deleting Educational Qualifications')
               )
           )
