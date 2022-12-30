@@ -3,9 +3,13 @@ import {
   collection,
   doc,
   getDoc,
-  deleteDoc
+  getDocs,
+  deleteDoc,
+  query,
+  where
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { ref, deleteObject } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
+import { deleteUser } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
 
 export async function deleteRequest() {
   
@@ -20,7 +24,18 @@ export async function deleteRequest() {
       if (ans) {
         const del = doc(firebase.db, 'joinedus', `${btn[i].id}`);
         const doc1 = await getDoc(del);
+        const q = query(
+          collection(firebase.db, 'users'),
+          where('email', '==', `${doc1.data().email}`)
+        );
 
+        const querySnapshot = await getDocs(q);
+        console.log(querySnapshot?.docs[0]?.data()?.uid);
+        const uid = querySnapshot?.docs[0]?.data()?.uid;
+        if (querySnapshot?.docs.length > 0) {
+          const del2 = doc(firebase.db, 'users', `${querySnapshot?.docs[0]?.id}`);
+          await deleteDoc(del2);
+        }
         const sDRef = ref(firebase.storage, `${doc1.data().sampleDesign}`);
         const eQRef = ref(firebase.storage, `${doc1.data().educationQualification}`);
 
