@@ -1,13 +1,15 @@
-// import emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-
-// (function () {
-//     emailjs.init('1hmmPSfvdBflctHle'); //use your USER ID
-// })();
-
-// import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js'
-
 import firebase from './firebase.js'
-import { doc, getDoc, deleteDoc, updateDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where
+} from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
 
 export async function getUser() {
@@ -15,10 +17,8 @@ export async function getUser() {
     const id = window.location.search.slice(4);
     const docRef = doc(firebase.db, "joinedus", id);
     const userDoc = await getDoc(docRef)
-    console.log(userDoc);
     const user = userDoc.data()
     const fileFormat = user.sampleDesign?.split('joinedus')[1].split('?alt=')[0].replace('%2F', "/").replace('%20', ' ').replace('%2F', "/").replace('%20', ' ').replace('%20', ' ').split('/')[2].slice(0, -13).split('.')[1]
-    console.log(user)
     let name = document.getElementById('name')
     name.textContent = user.fullName
     let email = document.getElementById('email')
@@ -28,9 +28,7 @@ export async function getUser() {
     creator.textContent = ('Creator : ' + user.fullName)
 
     var acceptBtn = document.getElementById("accept");
-    // ////console.log(acceptBtn)
     var img = document.getElementById('mainImage');
-    console.log(img)
     if (fileFormat === 'png' || fileFormat === 'jpg' || fileFormat === 'jpeg') {
         img.src = `${user.sampleDesign}`
     } else {
@@ -39,16 +37,11 @@ export async function getUser() {
 
     var fD = document.getElementById('fileDownload');
     const ff = user.sampleDesign?.split('joinedus')[1].split('?alt=')[0].replace('%2F', "/").replace('%20', ' ').replace('%2F', "/").replace('%20', ' ').replace('%20', ' ').split('/')[2].slice(0, -13)
-    console.log(ff)
     fD.href = `${user.educationQualification}`
     fD.download = `${ff}`
-    console.log(fD)
 
     acceptBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        alert("Accept button clicked");
-
-
         try {
             function generateP() {
                 var pass = '';
@@ -97,7 +90,7 @@ export async function getUser() {
                         switch (error.code) {
                             case 'auth/email-already-in-use':
                                 alert(`Email address ${user.email} already in use.`);
-                                document.getElementById('accept').textContent = 'Already Accepted Accepted!'
+                                document.getElementById('accept').textContent = 'Already Accepted!'
                                 document.getElementById('decline').style.display = 'none'
                                 break;
                             case 'auth/invalid-email':
@@ -119,7 +112,6 @@ export async function getUser() {
 
             } catch (error) {
                 alert('Some Error Occured');
-                window.location.replace('/creators.html');
             }
 
 
@@ -129,25 +121,25 @@ export async function getUser() {
                 tomail: `${user.email}`,
                 from_name: '3dhousemap',
                 to_name: name.innerText,
-                message: `Greetings ${user.fullName}, \n \t We're glad to announce that you are now a creator at 3dhousemap.in with your credentials as :- \n Email - "${user.email}" \n and \n Password - "${password}" \n Thanking you, Team 3dhousemap`,
+                message: `Greetings ${user.fullName}, \n \t We're glad to announce that you are now a creator at 3dhousemap.in with your credentials as :- \n Email - ${user.email} \n and \n Password - ${password} \n Thanking you, Team 3dhousemap`,
             };
 
             emailjs
-                .send('service_nqy2iol', 'template_vlhr40o', templateParams) //Insert your email service ID and email template ID
-                .then(
-                    function (response) {
-                        ////console.log('SUCCESS!', response.status, response.text);
-                    },
-                    function (error) {
-                        ////console.log('FAILED...', error);
-                        alert('Some Error Occured');
-                        window.location.replace('/creators.html');
-                    }
-                );
+              .send('service_mzj810r', 'template_edub2nx', templateParams) //Insert your email service ID and email template ID
+              .then(
+                function (response) {
+                  ////console.log('SUCCESS!', response.status, response.text);
+                },
+                function (error) {
+                  console.log('FAILED...', error);
+                  //   alert('Some Error Occured');
+                  //   window.location = 'creators.html';
+                }
+              );
         } catch (error) {
-            ////console.log(error)
-            alert('Some Error Occured');
-            window.location.replace('/creators.html');
+            console.log(error)
+            // alert('Some Error Occured');
+            // window.location = 'creators.html';
         }
     })
 
@@ -163,9 +155,19 @@ export async function getUser() {
 
         let ans = confirm('Do You Really Want To Reject Request?')
         if (ans) {
+            const del = doc(firebase.db, 'joinedus', id);
+            const doc1 = await getDoc(del);
+            deleteDoc(del).then(() => window.location = 'creators.html')
+            const q = query(
+              collection(firebase.db, 'users'),
+              where('email', '==', `${doc1.data().email}`)
+            );
 
-            const del = doc(firebase.db, 'joinedus', id)
-            deleteDoc(del).then(() => window.location.replace('/creators.html'))
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot?.docs.length > 0) {
+              const del2 = doc(firebase.db, 'users', `${querySnapshot?.docs[0]?.id}`);
+              await deleteDoc(del2);
+            }
 
         } else {
 

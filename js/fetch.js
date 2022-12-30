@@ -27,9 +27,6 @@ export async function setProducts() {
     table.appendChild(tr);
   });
 }
-{
-  /* <button id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button> */
-}
 
 export async function setCreators() {
   const creators = collection(firebase.db, 'joinedus');
@@ -49,7 +46,6 @@ export async function setCreators() {
               <td>${data.contact}</td>
               <td>
               <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer; id='${doc.id}' class='removeButton' style="cursor: pointer;">Remove</button>
-              <button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
                 </td>
             `;
       creatorsTable.appendChild(tr);
@@ -73,7 +69,6 @@ export async function setAllCreators() {
               <td>${data.contact}</td>
               <td>
               <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeButton'>Remove</button>
-              <button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='viewProfile' >View</button>
               </td>
             `;
     creatorsTable.appendChild(tr);
@@ -123,7 +118,6 @@ export async function fetchIncome() {
 
   const inc = document.getElementById('income');
   inc.textContent = overallIncome + ' INR';
-  // inc.innerText({oneMonthIncome}))
 }
 
 export const fetchAllStats = async () => {
@@ -145,38 +139,21 @@ export const fetchAllStats = async () => {
   });
   creatorsTable.innerHTML = `
       <div class="main-content-info container">
-        <div style="cursor: pointer" onclick="window.location = '/creators.html'" class="mini-card">
+        <div style="cursor: pointer" onclick="window.location = 'creators.html'" class="mini-card">
           <h2 class="cus-num cus-h"></h2>
           <h2>${creatorDocSnap.docs.length}</h2>
           <p>Creators</p>
         </div>
-        <div style="cursor: pointer" onclick="window.location = '/uploads.html'" class="mini-card">
+        <div style="cursor: pointer" onclick="window.location = 'uploads.html'" class="mini-card">
           <h2 class="cus-num cus-pro"></h2>
           <h2>${productDocSnap.docs.length}</h2>
           <p>Uploaded<br/> Content</p>
         </div>
-        <div style="cursor: pointer" onclick="window.location = '/income.html'" class="mini-card">
+        <div style="cursor: pointer" onclick="window.location = 'income.html'" class="mini-card">
           <h2 class="cus-num cus-inc"></h2>
           <h2>${overallIncome} INR</h2>
           <p>Income</p>
         </div>
         <div class="clear"></div>
       </div>`;
-  //  docSnap.docs.reverse().forEach((doc) => {
-  //    // ////console.log(doc.data());
-  //    const data = doc.data();
-  //    // ////console.log(data, doc.id)
-  //    const tr = document.createElement('tr');
-  //    let id = doc.id;
-  //    tr.innerHTML = `;
-  //           <td><a href="./creator.html?id=${doc.id}">${data.fullName}</a></td>
-  //           <td>${data.email}</td>
-  //           <td>${data.contact}</td>
-  //           <td>
-  //           <button id='${doc.id}' class='removeButton'  style="cursor: pointer;">Remove</button>
-  //           <button id='${doc.id}' class='viewProfile' style="cursor: pointer;">View</button>
-  //           </td>
-  //         `;
-  //    creatorsTable.appendChild(tr);
-  //  });
 };

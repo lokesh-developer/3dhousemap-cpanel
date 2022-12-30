@@ -9,7 +9,6 @@ import {
   where
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { ref, deleteObject } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
-import { deleteUser } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
 
 export async function deleteRequest() {
   
