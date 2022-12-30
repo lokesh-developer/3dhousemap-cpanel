@@ -24,71 +24,81 @@
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/fetch.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <script type="module" src="js/firebase.js"></script>
-  <script type="module" src="js/fetch.js"></script>
-  <script type="module">
-    
-    
-  </script>
-  <script type="module">
-    import { setAllCreators } from "./js/fetch.js";
-    import {deleteRequest} from './js/delete.js'
-    import {viewProfile} from './js/view.js'
-    // setAllCreators();
-    // fetchB()
-    const layData =async () => {
-      const d = await setAllCreators();
-      return;
-    }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/fetch.js"></script>
+    <script type="module"></script>
+    <script type="module">
+      import { setAllCreators } from './js/fetch.js';
+      import { deleteRequest } from './js/delete.js';
+      import { viewProfile } from './js/view.js';
+      // setAllCreators();
+      // fetchB()
+      const layData = async () => {
+        const d = await setAllCreators();
+        return;
+      };
 
-    layData().then(()=>{deleteRequest(); viewProfile()})
-  </script>
-</head>
+      layData().then(() => {
+        deleteRequest();
+        viewProfile();
+      });
+    </script>
+  </head>
 
-<body>
-  <section id="sidebar">
-    <div class="sidebar-brand">
-      <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <li>
-          <a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
-        </li>
-        <li>
-          <a href="creators.html"><i class="fa fa-users"></i> <span>Creators</span></a>
-        </li>
-        <li>
-          <a href="uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
-        </li>
-        <!-- <li>
+  <body>
+    <section id="sidebar">
+      <div class="sidebar-brand">
+        <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
+          </li>
+          <li>
+            <a href="creators.html"><i class="fa fa-users"></i> <span>Creators</span></a>
+          </li>
+          <li>
+            <a href="uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
+          </li>
+          <!-- <li>
           <a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a>
         </li> -->
-        <li>
-          <a href="income.html"><i class="fa fa-money"></i> <span>Income</span></a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <section id="main-content">
-    <header>
-      <div class="header-left">
-        <h2 class="toggle-btn">Creators</h2>
+          <li>
+            <a href="income.html"><i class="fa fa-money"></i> <span>Income</span></a>
+          </li>
+        </ul>
       </div>
-      <div class="header-left header-serach">
-        <!-- <div class="serach-par">
+    </section>
+    <section id="main-content">
+      <header>
+        <div class="header-left">
+          <h2 class="toggle-btn">Creators</h2>
+        </div>
+        <div class="header-left header-serach">
+          <!-- <div class="serach-par">
           <input class="search" type="text" placeholder="Search Here..." />
           <i class="fa fa-search"></i>
         </div> -->
-      </div>
-      <div class="header-left header-profile">
-        <img src="images/user.png" class="img-responsive" />
-        <h3>Abhishek</h3>
-        <p>Admin</p>
-      </div>
+        </div>
+        <div class="header-left header-profile">
+          <img src="images/user.png" class="img-responsive" />
+          <h3>Abhishek</h3>
+          <p>Admin</p>
+        </div>
+      </header>
 
       <div class="content-pro-par">
         <div style="width: 85%" class="pro-table">
