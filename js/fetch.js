@@ -9,7 +9,6 @@ var loader = document.getElementById('loader');
 
 export async function setProducts() {
   const products = collection(firebase.db, 'products');
-  console.log(loader);
   loader.style.display = 'flex';
   const docSnap = await getDocs(products);
   // ////console.log(docSnap.docs);
@@ -39,7 +38,6 @@ export async function setCreators() {
   const docSnap = await getDocs(creators);
   const creatorsTable = document.getElementById('creators-table');
   loader.style.display = 'flex';
-  // ////console.log(creatorsTable);
   docSnap.docs
     .reverse()
     .slice(0, 5)
