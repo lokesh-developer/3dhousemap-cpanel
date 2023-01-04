@@ -5,8 +5,12 @@ import {
   getDocs
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 
+var loader = document.getElementById('loader');
+
 export async function setProducts() {
   const products = collection(firebase.db, 'products');
+  console.log(loader);
+  loader.style.display = 'flex';
   const docSnap = await getDocs(products);
   // ////console.log(docSnap.docs);
   const table = document.getElementById('uploads-table');
@@ -27,12 +31,14 @@ export async function setProducts() {
             `;
     table.appendChild(tr);
   });
+  loader.style.display = 'none';
 }
 
 export async function setCreators() {
   const creators = collection(firebase.db, 'joinedus');
   const docSnap = await getDocs(creators);
   const creatorsTable = document.getElementById('creators-table');
+  loader.style.display = 'flex';
   // ////console.log(creatorsTable);
   docSnap.docs
     .reverse()
@@ -51,12 +57,14 @@ export async function setCreators() {
             `;
       creatorsTable.appendChild(tr);
     });
+  loader.style.display = 'none';
 }
 
 export async function setAllCreators() {
   const creators = collection(firebase.db, 'joinedus');
   const docSnap = await getDocs(creators);
   const creatorsTable = document.getElementById('creators-table-creators');
+  loader.style.display = 'flex';
   // ////console.log(creatorsTable);
   docSnap.docs.reverse().forEach((doc) => {
     // ////console.log(doc.data());
@@ -74,12 +82,14 @@ export async function setAllCreators() {
             `;
     creatorsTable.appendChild(tr);
   });
+  loader.style.display = 'none';
 }
 
 export async function fetchIncome() {
   const creators = collection(firebase.db, 'joinedus');
   const docs = await getDocs(creators);
   const incomeTable = document.getElementById('income-table');
+  loader.style.display = 'flex';
   let overallIncome = 0;
   docs.docs.forEach((doc) => {
     const data = doc.data();
@@ -115,6 +125,7 @@ export async function fetchIncome() {
 
   const inc = document.getElementById('income');
   inc.textContent = overallIncome + ' INR';
+  loader.style.display = 'none';
 }
 
 export const fetchAllStats = async () => {
@@ -125,6 +136,7 @@ export const fetchAllStats = async () => {
   const productDocSnap = await getDocs(products);
   const incomeDocSnap = await getDocs(income);
   const creatorsTable = document.getElementById('stats');
+  loader.style.display = 'flex';
   // ////console.log(creatorsTable);
   let overallIncome = 0;
   incomeDocSnap.docs.forEach((doc) => {
@@ -153,4 +165,5 @@ export const fetchAllStats = async () => {
         </div>
         <div class="clear"></div>
       </div>`;
+  loader.style.display = 'none';
 };

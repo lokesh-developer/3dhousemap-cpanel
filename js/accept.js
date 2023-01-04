@@ -64,6 +64,7 @@ export async function getUser() {
       const ans = confirm('Confirm accept?');
 
       if (ans) {
+        loader.style.display = 'flex';
         function generateP() {
           var pass = '';
           var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz0123456789@#$';
@@ -149,6 +150,7 @@ export async function getUser() {
             }
           );
       } else {
+        loader.style.display = 'none';
         alert('Request Not Accepted');
       }
     } catch (error) {
@@ -156,6 +158,7 @@ export async function getUser() {
       // alert('Some Error Occured');
       // window.location = 'creators.html';
     }
+    loader.style.display = 'none';
   });
 
   var rejectBtn = document.getElementById('decline');
@@ -169,6 +172,7 @@ export async function getUser() {
 
     let ans = confirm('Do You Really Want To Reject Request?');
     if (ans) {
+      loader.style.display = 'flex';
       const del = doc(firebase.db, 'joinedus', id);
       const doc1 = await getDoc(del);
       deleteDoc(del).then(() => (window.location = 'creators.html'));
@@ -183,7 +187,9 @@ export async function getUser() {
         await deleteDoc(del2);
       }
     } else {
+      loader.style.display = 'none';
       alert('Request Not Deleted!');
     }
   });
+  loader.style.display = 'none';
 }

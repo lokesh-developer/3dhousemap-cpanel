@@ -1,94 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Creator</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <script type="module" src="./js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js"></script>
+    <script type="module">
+      import { getUser } from './js/accept.js';
+      const user = async () => await getUser();
+      user();
+      // user().then(() => addCreator(window.location.search.slice(4)))
+    </script>
+  </head>
 
-<head>
-  <title>Creator</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link type="text/css" rel="stylesheet" href="css/style.css" />
-  <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-  <script type='module' src="./js/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js"></script>
-  <script type="module">
-    import { getUser} from './js/accept.js'
-    const user = async() => await getUser();
-    user();
-    // user().then(() => addCreator(window.location.search.slice(4)))
-  </script>
-</head>
-
-<body>
-  <section id="sidebar">
-    <div class="sidebar-brand">
-      <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <li>
-          <a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
-        </li>
-        <li>
-          <a href="creators.html"><i class="fa fa-users"></i> <span>Creators</span></a>
-        </li>
-        <li>
-          <a href="uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
-        </li>
-        <!-- <li>
+  <body>
+    <section id="sidebar">
+      <div class="sidebar-brand">
+        <h2><i class="fa fa-desktop"></i> <span>3Dhousemap</span></h2>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
+          </li>
+          <li>
+            <a href="creators.html"><i class="fa fa-users"></i> <span>Creators</span></a>
+          </li>
+          <li>
+            <a href="uploads.html"><i class="fa fa-file"></i> <span>Uploads</span></a>
+          </li>
+          <!-- <li>
           <a href="/orders.html"><i class="fa fa-file-pdf-o"></i> <span>Orders</span></a>
         </li> -->
-        <li>
-          <a href="income.html"><i class="fa fa-money"></i> <span>Income</span></a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="main-content">
-    <header style="position: sticky">
-      <div class="header-left">
-        <h2 class="toggle-btn"><i class="fa fa-bars"></i> Dashboard</h2>
+          <li>
+            <a href="income.html"><i class="fa fa-money"></i> <span>Income</span></a>
+          </li>
+        </ul>
       </div>
-      <div class="header-left header-right header-profile">
-        <img src="images/user.png" class="img-responsive" />
-        <h3>Abhishek</h3>
-        <p>Admin</p>
-      </div>
-      <div class="clear"></div>
-    </header>
-    <br />
+    </section>
 
-    <div class="sec-container">
-      <div class="sec-left card">
-        <img src="images/user.png" alt="John" style="width: 100%" />
-        <h1 id="name"></h1>
-        <p class="title" id="email"></p>
-        <button class="button button4">Contact</button>
-        <div class="w3-section">
-          
-          <button id="accept" class="button w3-green">Accept</button>
-          <button id="decline" class="button w3-red">Delete</button>
+    <section id="main-content">
+      <header style="position: sticky">
+        <div class="header-left">
+          <h2 class="toggle-btn"><i class="fa fa-bars"></i> Dashboard</h2>
         </div>
-        <button style="background-color: white; border: none; border-radius: 15px; padding: 8px; cursor: pointer"><a id='fileDownload' href="" src="">Download Files</a></button>
-      </div>
-      <div class="sec-right">
-        <h3>Design Uploaded</h3>
-        <img id='mainImage' src="" alt="Avatar" style="width: 80%" />
-        <h5 id="creator-desc">Creator: Ram</h5>
-      </div>
-    </div>
-  </section>
-</body>
-<!-- <script src="js/mailer.js"></script> -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.0/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function () {
-    emailjs.init('zGUYr0UAReYDr5Y4L'); //use your USER ID
-  })();
-</script>
+        <div class="header-left header-right header-profile">
+          <img src="images/user.png" class="img-responsive" />
+          <h3>Abhishek</h3>
+          <p>Admin</p>
+        </div>
+        <div class="clear"></div>
+      </header>
+      <br />
 
+      <div class="sec-container">
+        <div class="sec-left card">
+          <img src="images/user.png" alt="John" style="width: 100%" />
+          <h1 id="name"></h1>
+          <p class="title" id="email"></p>
+          <button class="button button4">Contact</button>
+          <div class="w3-section">
+            <button id="accept" class="button w3-green">Accept</button>
+            <button id="decline" class="button w3-red">Delete</button>
+          </div>
+          <button
+            style="
+              background-color: white;
+              border: none;
+              border-radius: 15px;
+              padding: 8px;
+              cursor: pointer;
+            "
+          >
+            <a id="fileDownload" href="" src="">Download Files</a>
+          </button>
+        </div>
+        <div class="sec-right">
+          <h3>Design Uploaded</h3>
+          <img id="mainImage" src="" alt="Avatar" style="width: 80%" />
+          <h5 id="creator-desc">Creator: Ram</h5>
+        </div>
+      </div>
+    </section>
+    <div class="loader" id="loader">
+      <img src="images/loader.gif" />
+    </div>
+  </body>
+  <!-- <script src="js/mailer.js"></script> -->
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.0/dist/email.min.js"
+  ></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init('zGUYr0UAReYDr5Y4L'); //use your USER ID
+    })();
+  </script>
 </html>

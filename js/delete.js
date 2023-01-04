@@ -10,8 +10,9 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 import { ref, deleteObject } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js';
 
+var loader = document.getElementById('loader');
+
 export async function deleteRequest() {
-  
   const btn = document.getElementsByClassName('removeButton');
 
   var b = Array.from(btn);
@@ -19,8 +20,10 @@ export async function deleteRequest() {
   for (let i = 0; i < b.length; i++) {
     btn[i].addEventListener('click', async function () {
       let ans = confirm('Do You Really Want To Reject Request?');
+      
 
       if (ans) {
+        loader.style.display = 'flex';
         const del = doc(firebase.db, 'joinedus', `${btn[i].id}`);
         const doc1 = await getDoc(del);
         const q = query(
@@ -54,10 +57,12 @@ export async function deleteRequest() {
           })
           .catch(() => console.log('Some Error Occured While Rejecting Request'));
       } else {
+        loader.style.display = 'none';
         alert('Request Not Deleted!');
       }
     });
   }
+  loader.style.display = 'none';
 }
 
 export async function deleteProduct() {
@@ -67,8 +72,10 @@ export async function deleteProduct() {
   for (let i = 0; i < b.length; i++) {
     btn[i].addEventListener('click', async function () {
       let ans = confirm('Do You Really Want To Delete Product?');
+      
 
       if (ans) {
+        loader.style.display = 'flex';
         const del = doc(firebase.db, 'products', `${btn[i].id}`);
         const doc1 = await getDoc(del);
 
@@ -92,8 +99,11 @@ export async function deleteProduct() {
           .then(() => console.log('Request Rejected'))
           .catch(() => console.log('Some Error Occured While Rejecting Request'));
       } else {
+        loader.style.display = 'none';
         alert('Request Not Deleted!');
+        
       }
     });
   }
+  loader.style.display = 'none';
 }
