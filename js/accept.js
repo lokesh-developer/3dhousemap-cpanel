@@ -61,89 +61,96 @@ export async function getUser() {
   acceptBtn.addEventListener('click', (e) => {
     e.preventDefault();
     try {
-      function generateP() {
-        var pass = '';
-        var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz0123456789@#$';
+      const ans = confirm('Confirm accept?');
 
-        for (let i = 1; i <= 8; i++) {
-          var char = Math.floor(Math.random() * str.length + 1);
+      if (ans) {
+        function generateP() {
+          var pass = '';
+          var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz0123456789@#$';
 
-          pass += str.charAt(char);
+          for (let i = 1; i <= 8; i++) {
+            var char = Math.floor(Math.random() * str.length + 1);
+
+            pass += str.charAt(char);
+          }
+
+          return pass;
         }
 
-        return pass;
-      }
+        const password = generateP();
 
-      const password = generateP();
+        var templateParams = {
+          tomail: `${user.email}`,
+          from_name: '3dhousemap',
+          to_name: name.innerText,
+          message: `Greetings ${user.fullName}, \n \t We're glad to announce that you are now a creator at 3dhousemap.in with your credentials as :- \n Email - ${user.email} \n and \n Password - ${password} \n Thanking you, Team 3dhousemap`
+        };
 
-      var templateParams = {
-        tomail: `${user.email}`,
-        from_name: '3dhousemap',
-        to_name: name.innerText,
-        message: `Greetings ${user.fullName}, \n \t We're glad to announce that you are now a creator at 3dhousemap.in with your credentials as :- \n Email - ${user.email} \n and \n Password - ${password} \n Thanking you, Team 3dhousemap`
-      };
-
-      emailjs
-        .send('service_mzj810r', 'template_edub2nx', templateParams) //Insert your email service ID and email template ID
-        .then(
-          function (response) {
-            try {
-              createUserWithEmailAndPassword(firebase.auth, user.email, password)
-                .then(async (userCredential) => {
-                  const dbRef = collection(firebase.db, 'users');
-                  addDoc(dbRef, {
-                    uid: userCredential.user.uid,
-                    email: user.email,
-                    name: user.fullName,
-                    photo: '',
-                    collections: []
-                  })
-                    .then((docRef) => {
-                      console.log('Added To Users');
+        emailjs
+          .send('service_mzj810r', 'template_edub2nx', templateParams) //Insert your email service ID and email template ID
+          .then(
+            function (response) {
+              try {
+                createUserWithEmailAndPassword(firebase.auth, user.email, password)
+                  .then(async (userCredential) => {
+                    const dbRef = collection(firebase.db, 'users');
+                    addDoc(dbRef, {
+                      uid: userCredential.user.uid,
+                      email: user.email,
+                      name: user.fullName,
+                      photo: '',
+                      collections: []
                     })
-                    .catch((error) => {
-                      console.log(error);
+                      .then((docRef) => {
+                        console.log('Added To Users');
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+
+                    document.getElementById('accept').textContent = 'Accepted!';
+                    document.getElementById('decline').style.display = 'none';
+                    await updateDoc(docRef, {
+                      creator: true,
+                      credentials: userCredential
                     });
+                  })
 
-                  document.getElementById('accept').textContent = 'Accepted!';
-                  document.getElementById('decline').style.display = 'none';
-                  await updateDoc(docRef, {
-                    creator: true,
-                    credentials: userCredential
+                  .catch((error) => {
+                    switch (error.code) {
+                      case 'auth/email-already-in-use':
+                        alert(`Email address ${user.email} already in use.`);
+                        document.getElementById('accept').textContent = 'Already Accepted!';
+                        document.getElementById('decline').style.display = 'none';
+                        break;
+                      case 'auth/invalid-email':
+                        //console.log(`Email address ${this.state.email} is invalid.`);
+                        break;
+                      case 'auth/operation-not-allowed':
+                        //console.log(`Error during sign up.`);
+                        break;
+                      case 'auth/weak-password':
+                        //console.log('Password is not strong enough. Add additional characters including special characters and numbers.');
+                        break;
+                      default:
+                        //console.log(error.message);
+                        break;
+                    }
                   });
-                })
+              } catch (error) {
+                alert('Some Error Occured');
+              }
+            },
 
-                .catch((error) => {
-                  switch (error.code) {
-                    case 'auth/email-already-in-use':
-                      alert(`Email address ${user.email} already in use.`);
-                      document.getElementById('accept').textContent = 'Already Accepted!';
-                      document.getElementById('decline').style.display = 'none';
-                      break;
-                    case 'auth/invalid-email':
-                      //console.log(`Email address ${this.state.email} is invalid.`);
-                      break;
-                    case 'auth/operation-not-allowed':
-                      //console.log(`Error during sign up.`);
-                      break;
-                    case 'auth/weak-password':
-                      //console.log('Password is not strong enough. Add additional characters including special characters and numbers.');
-                      break;
-                    default:
-                      //console.log(error.message);
-                      break;
-                  }
-                });
-            } catch (error) {
-              alert('Some Error Occured');
+            function (error) {
+              console.log('FAILED...', error);
+              alert('Some Error Occured, Reach out to technical help!');
+              //   window.location = 'creators.html';
             }
-          },
-          function (error) {
-            console.log('FAILED...', error);
-            alert('Some Error Occured, Reach out to technical help!');
-            //   window.location = 'creators.html';
-          }
-        );
+          );
+      } else {
+        alert('Request Not Accepted');
+      }
     } catch (error) {
       console.log(error);
       // alert('Some Error Occured');

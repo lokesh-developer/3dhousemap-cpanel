@@ -22,6 +22,7 @@ export async function setProducts() {
               <td><button style="background-color: #ff69b4; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500;cursor: pointer; cursor: pointer;" onclick="window.open('${data.mainFile}')">Download</button></td>
               <td>
               <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' class='removeProduct' style="cursor: pointer;">Remove</button>
+              <button style="background-color: #a9203e; padding: 10px; border-radius: 25px; border: none; color: white;font-weight: 4500; cursor: pointer;" id='${doc.id}' style="cursor: pointer;" onclick="window.open('https://3dhousemap.in/products/${doc.id}')">View</button>
                 </td>
             `;
     table.appendChild(tr);
@@ -95,10 +96,6 @@ export async function fetchIncome() {
     const past30thTS = (seconds - 2592000) * 1000;
     overallIncome += totalIncome;
     data.plansSold.map((e) => {
-      ////console.log(e.timestamp.seconds * 1000) //Timestamp Of The Date When The Product Was Purchased
-      ////console.log(seconds * 1000) //Today's Timestamp
-      ////console.log((seconds  -2592000)*1000) //Timestamp Of Past 30th Day From Today
-
       const purchaseTS = e.timestamp.seconds * 1000;
 
       if (todayTS - purchaseTS < todayTS - past30thTS) {
